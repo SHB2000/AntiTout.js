@@ -1,5 +1,3 @@
-// Add this script to your common.js page on Wikivoyage
-
 // Function to revert the latest edit
 function revertToutEdit(pageTitle) {
     var api = new mw.Api();
@@ -30,9 +28,9 @@ function revertToutEdit(pageTitle) {
                     action: 'edit',
                     title: pageTitle,
                     undo: revisionId,
-                    summary: 'Reverting [[WV:TOUT|touting]]'
+                    summary: 'Reverting [[WV:TOUT|touting]] ([[User:SHB2000/AntiTout.js|AntiTout]])'
                 }).done(function() {
-                    alert('Edit reverted successfully');
+                    alert('Edit successfully reverted');
                 }).fail(function(error) {
                     alert('Error reverting edit: ' + error);
                     console.error('Error details:', error);
@@ -53,7 +51,26 @@ function revertToutEdit(pageTitle) {
 function warnUser(userName) {
     var api = new mw.Api();
     var userTalkPage = 'User talk:' + userName;
-    var warningTemplate = '\n{{subst:tout}} ~~~~';
+    var warningTemplate = '\n{{subst:tout}} <includeonly>~~</includeonly>~~';
 
     api
 }
+// Button
+$(function() {
+    $('<button>')
+        .text('AntiTout')
+        .attr('id', 'antiToutButton')
+        .css({
+            position: 'fixed',
+            top: '10px',
+            right: '10px',
+            zIndex: 9999,
+            padding: '10px',
+            backgroundColor: '#f8f9fa',
+            border: '1px solid #99a1a8',
+            borderRadius: '5px',
+            cursor: 'pointer'
+        })
+        .click(AntiTout)
+        .appendTo('body');
+});
