@@ -56,4 +56,4 @@ function warnUser(userName) {
     var warningTemplate = '\n{{subst:tout}} ~~~~';
 
     api
-
+}
